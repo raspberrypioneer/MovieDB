@@ -13,17 +13,24 @@ import { CartService } from './cart.service';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { ProductService } from './product.service';
+import { ProductAddComponent } from './product-add/product-add.component';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { MoviesService } from './movies.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
     RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
+      { path: '', component: MovieListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
       { path: 'cart', component: CartComponent },
       { path: 'shipping', component: ShippingComponent },
+      { path: 'product-add', component: ProductAddComponent },
     ])
   ],
   declarations: [
@@ -33,10 +40,12 @@ import { ProductService } from './product.service';
     ProductAlertsComponent,
     ProductDetailsComponent,
     CartComponent,
-    ShippingComponent
+    ShippingComponent,
+    ProductAddComponent,
+    MovieListComponent
   ],
   bootstrap: [ AppComponent ],
-  providers: [CartService, ProductService]
+  providers: [CartService, ProductService, MoviesService]
 })
 export class AppModule { }
 

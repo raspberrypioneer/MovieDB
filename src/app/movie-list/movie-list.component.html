@@ -1,0 +1,16 @@
+<h2>Movies</h2>
+
+<div *ngFor="let movie of movies | async; index as MovieId">
+
+  <h3>
+    <a [title]="movie.Title + ' details'" [routerLink]="['/movies', MovieId]">
+      {{ movie.Title }}
+    </a>
+  </h3>
+
+  <p *ngIf="movie.Plot">
+    Plot: {{ movie.Plot }}
+  </p>
+
+</div>
+
