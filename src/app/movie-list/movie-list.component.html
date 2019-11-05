@@ -8,8 +8,10 @@
     </a>
   </h3>
 
+  <img [src]="'https://github.com/raspberrypioneer/MovieDB/blob/master/src/assets/posters/' + movie.Poster + '?raw=true'" width=100 />
+
   <p *ngIf="movie.Plot">
-    Plot: {{ movie.Plot }}
+    {{ movie.Plot }}
   </p>
 
 </div>
