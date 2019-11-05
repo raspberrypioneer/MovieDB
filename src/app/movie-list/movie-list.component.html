@@ -1,18 +1,18 @@
-<h2>Movies</h2>
+<mat-accordion>
 
-<div *ngFor="let movie of movies | async; index as MovieId">
+  <mat-expansion-panel *ngFor="let movie of movies | async; index as MovieId">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <img [src]="posterPath + movie.Poster + '?raw=true'" width=30 />
+        &nbsp;{{ movie.Title }}<br />
+        &nbsp;{{ movie.Genre }}&nbsp;&nbsp;{{ movie.Rated }}&nbsp;{{ movie.Runtime }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+        {{ movie.Plot }}<br /><br />
+        {{ movie.Actors }}
+    <mat-action-row>
+      <button mat-button>Edit</button><button mat-button>Play</button>
+    </mat-action-row>
+  </mat-expansion-panel>
 
-  <h3>
-    <a [title]="movie.Title + ' details'" [routerLink]="['/movies', MovieId]">
-      {{ movie.Title }}
-    </a>
-  </h3>
-
-  <img [src]="'https://github.com/raspberrypioneer/MovieDB/blob/master/src/assets/posters/' + movie.Poster + '?raw=true'" width=100 />
-
-  <p *ngIf="movie.Plot">
-    {{ movie.Plot }}
-  </p>
-
-</div>
-
+<mat-accordion>

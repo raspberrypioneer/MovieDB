@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -15,16 +17,25 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { ProductService } from './product.service';
 import { ProductAddComponent } from './product-add/product-add.component';
 
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MoviesService } from './movies.service';
+
+//Material imports
+import { 
+  MatAutocompleteModule,
+  MatExpansionModule, 
+  MatButtonModule 
+} from '@angular/material';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     MatAutocompleteModule,
+    MatExpansionModule,
+    MatButtonModule,
     RouterModule.forRoot([
       { path: '', component: MovieListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },

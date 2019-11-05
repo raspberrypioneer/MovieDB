@@ -8,6 +8,7 @@ import { MoviesService } from '../movies.service';
 })
 export class MovieListComponent implements OnInit {
   movies;
+  posterPath = "https://github.com/raspberrypioneer/MovieDB/blob/master/src/assets/posters/";
 
   constructor(
     private moviesService: MoviesService
