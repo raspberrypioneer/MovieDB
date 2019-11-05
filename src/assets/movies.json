@@ -48,22 +48,6 @@
         "homeDateAdded":"\/Date(1522501200000)\/"
     },
     {
-        "MovieId":439,
-        "Title":"Alien: Covenant",
-        "Year":"2017",
-        "Director":"Ridley Scott",
-        "Actors":"Michael Fassbender, Katherine Waterston, Billy Crudup, Danny McBride",
-        "Type":"movie",
-        "Genre":"Horror, Sci-Fi, Thriller",
-        "Plot":"The crew of a colony ship, bound for a remote planet, discover an uncharted paradise with a threat beyond their imagination, and must attempt a harrowing escape.",
-        "Poster":"Alien Covenant.jpg",
-        "Rated":"R",
-        "Runtime":"122 min",
-        "imdbID":"tt2316204",
-        "fileLocation":"Alien Covenant.mp4",
-        "homeDateAdded":"\/Date(1501509600000)\/"
-    },
-    {
         "MovieId":500,
         "Title":"Antz",
         "Year":"1998",
