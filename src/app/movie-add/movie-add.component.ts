@@ -4,11 +4,11 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-product-add',
-  templateUrl: './product-add.component.html',
-  styleUrls: ['./product-add.component.css']
+  selector: 'app-movie-add',
+  templateUrl: './movie-add.component.html',
+  styleUrls: ['./movie-add.component.css']
 })
-export class ProductAddComponent implements OnInit {
+export class MovieAddComponent implements OnInit {
   name = new FormControl('');
 
   constructor() { }

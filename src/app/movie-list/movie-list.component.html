@@ -1,11 +1,13 @@
+<mat-paginator [length]="movies.length" [pageSize]="pageSize" 
+   (page)="pageEvent = getPaginatorData($event)">
+</mat-paginator>
 <mat-accordion>
 
-  <mat-expansion-panel *ngFor="let movie of movies | async; index as MovieId">
-    <mat-expansion-panel-header>
+  <mat-expansion-panel *ngFor="let movie of movies | slice: lowValue : highValue">
+    <mat-expansion-panel-header [collapsedHeight]="'100px'" [expandedHeight]="'100px'">
       <mat-panel-title>
-        <img [src]="posterPath + movie.Poster + '?raw=true'" width=30 />
-        &nbsp;{{ movie.Title }}<br />
-        &nbsp;{{ movie.Genre }}&nbsp;&nbsp;{{ movie.Rated }}&nbsp;{{ movie.Runtime }}
+        <img [src]="posterPath + movie.Poster + '?raw=true'" width=70 style="padding-right:12px;" />
+        {{ movie.Title }}<br /><br />{{ movie.Genre }}&nbsp;&nbsp;&nbsp;{{ movie.Rated }}&nbsp;{{ movie.Runtime }}
       </mat-panel-title>
     </mat-expansion-panel-header>
         {{ movie.Plot }}<br /><br />

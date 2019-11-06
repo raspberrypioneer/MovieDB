@@ -94,5 +94,21 @@
         "imdbID":"tt1323594",
         "fileLocation":"Despicable Me.mp4",
         "homeDateAdded":"\/Date(1389531600000)\/"
+    },
+    {
+        "MovieId":8,
+        "Title":"A Bug\u0027s Life",
+        "Year":"1998",
+        "Director":"John Lasseter, Andrew Stanton",
+        "Actors":"Dave Foley, Kevin Spacey, Julia Louis-Dreyfus, Hayden Panettiere",
+        "Type":"movie",
+        "Genre":"Animation, Adventure, Comedy",
+        "Plot":"A misfit ant, looking for \"warriors\" to save his colony from greedy grasshoppers, recruits a group of bugs that turn out to be an inept circus troupe.",
+        "Poster":"A Bug\u0027s Life.jpg",
+        "Rated":"G",
+        "Runtime":"95 min",
+        "imdbID":"tt0174716",
+        "fileLocation":"A Bug\u0027s Life.mp4",
+        "homeDateAdded":"\/Date(1425042000000)\/"
     }
 ]
