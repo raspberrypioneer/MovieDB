@@ -1,19 +1,24 @@
-<label>
-  Name:
+<div>
 
-    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="name" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
+  <mat-form-field>
+    <input matInput placeholder="Search" aria-label="State" [matAutocomplete]="auto" [formControl]="searchMoviesCtrl">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let movie of filteredMovies" [value]="movie.Title">
+          <span><b>{{movie.Title}}</b> ({{movie.Year}})</span>
+        </mat-option>
+      </ng-container>
     </mat-autocomplete>
+  </mat-form-field>
 
-</label>
+  <br>
 
-<p>
-  Value: {{ name.value }}
-</p>
+<ng-container *ngIf="errorMsg; else elseTemplate">
+  {{errorMsg}}
+</ng-container>
+<ng-template #elseTemplate>
+  <h5>Selected Value: {{searchMoviesCtrl.value}}</h5>
+</ng-template>
 
-<p>
-  <button (click)="updateName()">Update Movie</button>
-</p>
+</div>

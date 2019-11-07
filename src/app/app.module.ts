@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -16,20 +16,22 @@ import {
   MatAutocompleteModule,
   MatExpansionModule, 
   MatButtonModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatInputModule
 } from '@angular/material';
-
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatExpansionModule,
     MatButtonModule,
     MatPaginatorModule,
+    MatInputModule,
     RouterModule.forRoot([
       { path: '', component: MovieListComponent },
       { path: 'movie-add', component: MovieAddComponent },

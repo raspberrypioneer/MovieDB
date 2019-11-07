@@ -1,7 +1,9 @@
+//app.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+
+import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-add',
@@ -9,29 +11,41 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./movie-add.component.css']
 })
 export class MovieAddComponent implements OnInit {
-  name = new FormControl('');
+  searchMoviesCtrl = new FormControl();
+  filteredMovies: any;
+  isLoading = false;
+  errorMsg: string;
 
-  constructor() { }
-
-  updateName() {
-    this.name.setValue('Nancy');
-  }
-
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  constructor(
+    private http: HttpClient
+  ) { }
 
   ngOnInit() {
-    this.filteredOptions = this.name.valueChanges
+    this.searchMoviesCtrl.valueChanges
       .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+        debounceTime(500),
+        tap(() => {
+          this.errorMsg = "";
+          this.filteredMovies = [];
+          this.isLoading = true;
+        }),
+        switchMap(value => this.http.get("http://www.omdbapi.com/?apikey=5b3c2e6d&type=movie&s=" + value)
+          .pipe(
+            finalize(() => {
+              this.isLoading = false;
+            }),
+          )
+        )
+      )
+      .subscribe(data => {
+        if (data['Search'] == undefined) {
+          this.errorMsg = data['Error'];
+          this.filteredMovies = [];
+        } else {
+          this.errorMsg = "";
+          this.filteredMovies = data['Search'];
+        }
+      });
   }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
 }
+
