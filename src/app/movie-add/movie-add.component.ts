@@ -1,9 +1,8 @@
-//app.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
 import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
+import { OmdbapiService } from '../omdbapi.service';
 
 @Component({
   selector: 'app-movie-add',
@@ -15,10 +14,19 @@ export class MovieAddComponent implements OnInit {
   filteredMovies: any;
   isLoading = false;
   errorMsg: string;
+  showResult;
+  resultImdbId = "";
+  resultTitle = "";
+  resultType = "";
+  resultPoster = "";
+  resultYear = "";
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private omdbapiService: OmdbapiService
+  ) {
+      this.showResult = false;
+   }
 
   ngOnInit() {
     this.searchMoviesCtrl.valueChanges
@@ -29,7 +37,7 @@ export class MovieAddComponent implements OnInit {
           this.filteredMovies = [];
           this.isLoading = true;
         }),
-        switchMap(value => this.http.get("http://www.omdbapi.com/?apikey=5b3c2e6d&type=movie&s=" + value)
+        switchMap(value => this.omdbapiService.getOmdbapiMovies(value)
           .pipe(
             finalize(() => {
               this.isLoading = false;
@@ -46,6 +54,15 @@ export class MovieAddComponent implements OnInit {
           this.filteredMovies = data['Search'];
         }
       });
+  }
+
+  OnMovieSelected(option: MatOption) {
+    this.showResult = true;
+    this.resultImdbId = option.imdbID;
+    this.resultTitle = option.Title;
+    this.resultYear = option.Year;
+    this.resultType = option.Type;
+    this.resultPoster = option.Poster;
   }
 }
 

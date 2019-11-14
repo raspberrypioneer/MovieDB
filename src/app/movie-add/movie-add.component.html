@@ -1,11 +1,11 @@
-<div>
+<div style="padding-top:10px">
 
-  <mat-form-field>
-    <input matInput placeholder="Search" aria-label="State" [matAutocomplete]="auto" [formControl]="searchMoviesCtrl">
+  <mat-form-field style="width:480px;">
+    <input matInput placeholder="Search IMDB" aria-label="State" [matAutocomplete]="auto" [formControl]="searchMoviesCtrl">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
       <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
       <ng-container *ngIf="!isLoading">
-        <mat-option *ngFor="let movie of filteredMovies" [value]="movie.Title">
+        <mat-option *ngFor="let movie of filteredMovies" [value]="movie.Title" (click)="OnMovieSelected(movie)">
           <span><b>{{movie.Title}}</b> ({{movie.Year}})</span>
         </mat-option>
       </ng-container>
@@ -14,11 +14,15 @@
 
   <br>
 
-<ng-container *ngIf="errorMsg; else elseTemplate">
-  {{errorMsg}}
-</ng-container>
-<ng-template #elseTemplate>
-  <h5>Selected Value: {{searchMoviesCtrl.value}}</h5>
-</ng-template>
+  <mat-card *ngIf="showResult">
+    <mat-card-header>
+      <mat-card-title>{{resultTitle}} ({{resultYear}})</mat-card-title>
+      <mat-card-subtitle>{{resultType}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{resultPoster}}" alt="{{resultTitle}} {{resultImdbId}}" style="width:50%">
+    <mat-card-actions>
+      <button mat-button>ADD</button>
+    </mat-card-actions>
+  </mat-card>
 
 </div>

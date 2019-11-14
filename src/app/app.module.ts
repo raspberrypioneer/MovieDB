@@ -10,6 +10,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieAddComponent } from './movie-add/movie-add.component';
 import { MoviesService } from './movies.service';
+import 'hammerjs';
 
 //Material imports
 import { 
@@ -17,8 +18,10 @@ import {
   MatExpansionModule, 
   MatButtonModule,
   MatPaginatorModule,
-  MatInputModule
+  MatInputModule,
+  MatCardModule
 } from '@angular/material';
+import { OmdbapiService } from './omdbapi.service';
 
 @NgModule({
   imports: [
@@ -32,6 +35,7 @@ import {
     MatButtonModule,
     MatPaginatorModule,
     MatInputModule,
+    MatCardModule,
     RouterModule.forRoot([
       { path: '', component: MovieListComponent },
       { path: 'movie-add', component: MovieAddComponent },
@@ -44,6 +48,6 @@ import {
     MovieAddComponent,
   ],
   bootstrap: [ AppComponent ],
-  providers: [ MoviesService ]
+  providers: [ MoviesService, OmdbapiService ]
 })
 export class AppModule { }

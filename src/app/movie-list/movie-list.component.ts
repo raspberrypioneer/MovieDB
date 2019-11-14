@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from '../movie.interface';
 import { MoviesService } from '../movies.service';
 
-
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
@@ -12,7 +11,8 @@ import { MoviesService } from '../movies.service';
 })
 export class MovieListComponent implements OnInit {
   movies: Movie[];
-//  posterPath = "https://github.com/raspberrypioneer/MovieDB/blob/master/src/assets/posters/";
+  omdbapiMovies;
+  posterPath = "https://github.com/raspberrypioneer/MovieDB/blob/master/src/assets/posters/";
 
   constructor(
     private moviesService: MoviesService
@@ -23,6 +23,7 @@ export class MovieListComponent implements OnInit {
   }
 
   getMovies(): void {
+    this.movies = [];
     this.moviesService.getMovies()
       .subscribe(movies => (this.movies = movies));
   }
