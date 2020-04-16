@@ -15,7 +15,7 @@ export class OmdbapiService {
   }
 
   getOmdbapiList(): Observable<OmdbapiMovie[]> {
-    return this.http.get<OmdbapiMovie[]>('http://www.omdbapi.com/?apikey=5b3c2e6d&s=star+trek');
+    return this.http.get<OmdbapiMovie[]>('https://www.omdbapi.com/?apikey=5b3c2e6d&s=star+trek');
   }
 
 }

@@ -64,5 +64,9 @@ export class MovieAddComponent implements OnInit {
     this.resultType = option.Type;
     this.resultPoster = option.Poster;
   }
+
+  OnMovieAdd() {
+    this.showResult = false;
+  }
 }
 

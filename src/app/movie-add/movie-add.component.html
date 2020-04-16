@@ -21,7 +21,7 @@
     </mat-card-header>
     <img mat-card-image src="{{resultPoster}}" alt="{{resultTitle}} {{resultImdbId}}" style="width:50%">
     <mat-card-actions>
-      <button mat-button>ADD</button>
+      <button mat-button (click)="OnMovieAdd()">Add Movie to Collection</button>
     </mat-card-actions>
   </mat-card>
 
