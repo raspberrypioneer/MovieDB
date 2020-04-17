@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 import { OmdbapiService } from '../omdbapi.service';
+import { Movie } from '../movie.interface';
+import { MoviesService } from '../movies.service';
 
 @Component({
   selector: 'app-movie-add',
@@ -15,15 +17,25 @@ export class MovieAddComponent implements OnInit {
   isLoading = false;
   errorMsg: string;
   showResult;
-  resultImdbId = "";
-  resultTitle = "";
-  resultType = "";
-  resultPoster = "";
-  resultYear = "";
+  newMovie: Movie = { MovieId: ''
+                    , Title: ''
+                    , Year: ''
+                    , Director: ''
+                    , Actors: ''
+                    , Type: ''
+                    , Genre: ''
+                    , Plot: ''
+                    , Poster: ''
+                    , Rated: ''
+                    , Runtime: ''
+                    , imdbID: ''
+                    , fileLocation: ''
+                    , homeDateAdded: ''};
 
   constructor(
     private http: HttpClient,
-    private omdbapiService: OmdbapiService
+    private omdbapiService: OmdbapiService,
+    private movieService: MoviesService,
   ) {
       this.showResult = false;
    }
@@ -37,7 +49,7 @@ export class MovieAddComponent implements OnInit {
           this.filteredMovies = [];
           this.isLoading = true;
         }),
-        switchMap(value => this.omdbapiService.getOmdbapiMovies(value)
+        switchMap(value => this.omdbapiService.getAPISearchMovies(value)
           .pipe(
             finalize(() => {
               this.isLoading = false;
@@ -58,14 +70,15 @@ export class MovieAddComponent implements OnInit {
 
   OnMovieSelected(option: MatOption) {
     this.showResult = true;
-    this.resultImdbId = option.imdbID;
-    this.resultTitle = option.Title;
-    this.resultYear = option.Year;
-    this.resultType = option.Type;
-    this.resultPoster = option.Poster;
+    this.newMovie.imdbID = option.imdbID;
+    this.newMovie.Title = option.Title;
+    this.newMovie.Year = option.Year;
+    this.newMovie.Type = option.Type;
+    this.newMovie.Poster = option.Poster;
   }
 
   OnMovieAdd() {
+    this.movieService.addMovie(this.newMovie);
     this.showResult = false;
   }
 }

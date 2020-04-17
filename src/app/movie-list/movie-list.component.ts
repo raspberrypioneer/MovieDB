@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Movie } from '../movie.interface';
 import { MoviesService } from '../movies.service';
-import { OmdbapiMovie } from '../omdbapimovie.interface';
-import { OmdbapiService } from '../omdbapi.service';
+//import { OmdbapiMovie } from '../omdbapimovie.interface';
+//import { OmdbapiService } from '../omdbapi.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,12 +13,12 @@ import { OmdbapiService } from '../omdbapi.service';
 })
 export class MovieListComponent implements OnInit {
   movies: Movie[];
-  //omdbapiMovies;
+
   posterPath = "https://github.com/raspberrypioneer/MovieDB/blob/master/src/assets/posters/";
 
   constructor(
     private moviesService: MoviesService,
-    private omdbapiService: OmdbapiService
+    //private omdbapiService: OmdbapiService
   ) { }
 
   ngOnInit() {
@@ -27,16 +27,16 @@ export class MovieListComponent implements OnInit {
 
   getMovies(): void {
     this.movies = [];
-//    this.moviesService.getMovies()
-//      .subscribe(movies => (this.movies = movies));
-    this.omdbapiService.getOmdbapiList()
-      .subscribe(data => {
-        if (data['Search'] == undefined) {
-          this.movies = [];
-        } else {
-          this.movies = data['Search'];
-        }
-      });
+    this.moviesService.getMovies()
+      .subscribe(movies => (this.movies = movies));
+//    this.omdbapiService.getAPISearchMovies()
+//      .subscribe(data => {
+//        if (data['Search'] == undefined) {
+//          this.movies = [];
+//        } else {
+//          this.movies = data['Search'];
+//        }
+//      });
   }
 
   //Pagination

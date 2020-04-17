@@ -5,17 +5,18 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class OmdbapiService {
+  rootURL = 'https://www.omdbapi.com/?apikey=5b3c2e6d';
 
   constructor(
     private http: HttpClient
   ) {}
 
-  getOmdbapiMovies(value) {
-    return this.http.get('https://www.omdbapi.com/?apikey=5b3c2e6d&type=movie&s=' + value);
+  getAPISearchMovies(value) {
+    return this.http.get(this.rootURL + '&type=movie&s=' + value);
   }
 
-  getOmdbapiList(): Observable<OmdbapiMovie[]> {
-    return this.http.get<OmdbapiMovie[]>('https://www.omdbapi.com/?apikey=5b3c2e6d&s=star+trek');
-  }
+//  getAPIListMovies(): Observable<OmdbapiMovie[]> {
+//    return this.http.get<OmdbapiMovie[]>(this.rootURL + '&s=star+trek');
+//  }
 
 }

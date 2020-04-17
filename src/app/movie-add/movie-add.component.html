@@ -16,10 +16,10 @@
 
   <mat-card *ngIf="showResult">
     <mat-card-header>
-      <mat-card-title>{{resultTitle}} ({{resultYear}})</mat-card-title>
-      <mat-card-subtitle>{{resultType}}</mat-card-subtitle>
+      <mat-card-title>{{newMovie.Title}} ({{newMovie.Year}})</mat-card-title>
+      <mat-card-subtitle>{{newMovie.Type}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{resultPoster}}" alt="{{resultTitle}} {{resultImdbId}}" style="width:50%">
+    <img mat-card-image src="{{newMovie.Poster}}" alt="{{newMovie.Title}} {{newMovie.imdbID}}" style="width:50%">
     <mat-card-actions>
       <button mat-button (click)="OnMovieAdd()">Add Movie to Collection</button>
     </mat-card-actions>
