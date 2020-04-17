@@ -7,8 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
+    'Content-Type':  'application/json'
   })
 };
 
@@ -27,8 +26,8 @@ export class MoviesService {
     return this.http.get<Movie[]>(this.getMoviesURL);
   }
 
-  addMovie (movie: Movie) {
-    this.http.post(this.postMoviesURL, movie, httpOptions);
+  addMovie (movie: Movie): Observable<any> {
+    return this.http.post(this.postMoviesURL, movie, httpOptions).pipe();
   }
 
 }
