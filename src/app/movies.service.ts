@@ -15,6 +15,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MoviesService {
+  //getMoviesURL = 'https://110.174.232.153:1880/test1';
+  //postMoviesURL = 'https://110.174.232.153:1880/test11';
   getMoviesURL = '/assets/movies.json';
   postMoviesURL = 'https://webhook.site/f9e2fe00-de45-40cd-bdb2-e8e6c4770f6c';
 

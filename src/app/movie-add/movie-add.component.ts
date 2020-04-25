@@ -5,6 +5,7 @@ import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 import { OmdbapiService } from '../omdbapi.service';
 import { Movie } from '../movie.interface';
 import { MoviesService } from '../movies.service';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-movie-add',
@@ -31,7 +32,6 @@ export class MovieAddComponent implements OnInit {
                     , imdbID: ''
                     , fileLocation: ''
                     , homeDateAdded: ''};
-  currentDate = new Date();
 
   constructor(
     private http: HttpClient,
@@ -85,7 +85,7 @@ export class MovieAddComponent implements OnInit {
         this.newMovie.Runtime = data.Runtime;
         this.newMovie.imdbID = data.imdbID;
         this.newMovie.fileLocation = '';
-        this.newMovie.homeDateAdded = this.currentDate.toString();
+        this.newMovie.homeDateAdded = formatDate(new Date(), 'yyyy/MM/dd', 'en');
       });
 
   }
