@@ -2,7 +2,7 @@
 
   <mat-form-field style="width:480px;">
     <input matInput placeholder="Search IMDB" aria-label="State" [matAutocomplete]="auto" [formControl]="searchMoviesCtrl">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
       <ng-container *ngIf="!isLoading">
         <mat-option *ngFor="let movie of filteredMovies" [value]="movie.Title" (click)="OnMovieSelected(movie.imdbID)">
