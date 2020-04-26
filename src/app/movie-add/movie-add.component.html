@@ -5,7 +5,7 @@
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
       <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
       <ng-container *ngIf="!isLoading">
-        <mat-option *ngFor="let movie of filteredMovies" [value]="movie.Title" (click)="OnMovieSelected(movie)">
+        <mat-option *ngFor="let movie of filteredMovies" [value]="movie.Title" (click)="OnMovieSelected(movie.imdbID)">
           <span><b>{{movie.Title}}</b> ({{movie.Year}})</span>
         </mat-option>
       </ng-container>

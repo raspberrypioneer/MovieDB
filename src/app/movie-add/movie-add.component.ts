@@ -5,7 +5,7 @@ import { debounceTime, tap, switchMap, finalize } from 'rxjs/operators';
 import { OmdbapiService } from '../omdbapi.service';
 import { Movie } from '../movie.interface';
 import { MoviesService } from '../movies.service';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-movie-add',
@@ -69,21 +69,21 @@ export class MovieAddComponent implements OnInit {
       });
   }
 
-  OnMovieSelected(option: MatOption) {
+  OnMovieSelected(imdbID: string) {
     this.showResult = true;
 
-    this.omdbapiService.GetMovieByID(option.imdbID)
+    this.omdbapiService.GetMovieByID(imdbID)
       .subscribe(data => {
-        this.newMovie.Title = data.Title;
-        this.newMovie.Year = data.Year;
-        this.newMovie.Director = data.Director;
-        this.newMovie.Type = data.Type;
-        this.newMovie.Genre = data.Genre;
-        this.newMovie.Plot = data.Plot;
-        this.newMovie.Poster = data.Poster;
-        this.newMovie.Rated = data.Rated;
-        this.newMovie.Runtime = data.Runtime;
-        this.newMovie.imdbID = data.imdbID;
+        this.newMovie.Title = data["Title"];
+        this.newMovie.Year = data["Year"];
+        this.newMovie.Director = data["Director"];
+        this.newMovie.Type = data["Type"];
+        this.newMovie.Genre = data["Genre"];
+        this.newMovie.Plot = data["Plot"];
+        this.newMovie.Poster = data["Poster"];
+        this.newMovie.Rated = data["Rated"];
+        this.newMovie.Runtime = data["Runtime"];
+        this.newMovie.imdbID = imdbID;
         this.newMovie.fileLocation = '';
         this.newMovie.homeDateAdded = formatDate(new Date(), 'yyyy/MM/dd', 'en');
       });
