@@ -10,17 +10,16 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieAddComponent } from './movie-add/movie-add.component';
 import { MoviesService } from './movies.service';
-import 'hammerjs';
+//import 'hammerjs';
 
 //Material imports
-import { 
-  MatAutocompleteModule,
-  MatExpansionModule, 
-  MatButtonModule,
-  MatPaginatorModule,
-  MatInputModule,
-  MatCardModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+
 import { OmdbapiService } from './omdbapi.service';
 
 @NgModule({
